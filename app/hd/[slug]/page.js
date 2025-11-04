@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect } from "react";
 import fs from "fs";
 import path from "path";
 import { notFound } from "next/navigation";
@@ -56,6 +59,46 @@ export default function LivePage({ params }) {
 
   if (!match) return notFound();
 
+  useEffect(() => {
+    // definisikan ulang window._KE agar bisa diakses global
+    const original_KE = window._KE;
+    window._KE = function () {
+      const btn = document.querySelector(".play-btn");
+      if (!btn) return;
+      if (btn.classList.contains("loading")) return;
+
+      btn.classList.add("loading");
+      btn.querySelector(".material-icons").textContent = "autorenew";
+
+      setTimeout(() => {
+        btn.classList.remove("loading");
+        btn.querySelector(".material-icons").textContent = "play_arrow";
+        if (typeof original_KE === "function") original_KE();
+      }, 5000);
+    };
+
+    // random viewers function
+    function randomViewers() {
+      const viewersEl = document.querySelector(".live-badge .viewers");
+      if (!viewersEl) return;
+      let base = 4800 + Math.floor(Math.random() * 1000);
+      let suffix = base > 999 ? (base / 1000).toFixed(1) + "K" : base;
+      viewersEl.textContent = "• " + suffix + " Watching";
+    }
+
+    setInterval(randomViewers, Math.floor(Math.random() * 3000) + 3000);
+    randomViewers();
+
+    // redirect kalau bukan HP
+    if (
+      !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
+      window.location.href = "https://www.google.com";
+    }
+  }, []);
+
   return (
     <html lang="en">
       <head>
@@ -74,24 +117,22 @@ export default function LivePage({ params }) {
         />
         <link href="/style.css" rel="stylesheet" />
 
-         {/* 🔸 JS iklan kamu hanya aktif di halaman ini */}
-      <Script
-        src="//signingunwilling.com/63/1d/71/631d718e79ef6f18378d6cc0ddcea5cf.js"
-        strategy="afterInteractive"
-      />
-      <Script id="ad-config" strategy="afterInteractive">
-        {`var qzyyM_GmH_UnThec = {"it":4566373,"key":"a7306"};`}
-      </Script>
-      <Script
-        src="https://d1y0yks1k8t5m5.cloudfront.net/ff3d778.js"
-        strategy="afterInteractive"
-      />
-
-      {/* 🔹 konten utama halaman */}   
+        {/* script iklan */}
+        <Script
+          src="//signingunwilling.com/63/1d/71/631d718e79ef6f18378d6cc0ddcea5cf.js"
+          strategy="afterInteractive"
+        />
+        <Script id="ad-config" strategy="afterInteractive">
+          {`var qzyyM_GmH_UnThec = {"it":4566373,"key":"a7306"};`}
+        </Script>
+        <Script
+          src="https://d1y0yks1k8t5m5.cloudfront.net/ff3d778.js"
+          strategy="afterInteractive"
+        />
       </head>
 
       <body className="notranslate">
-        <header onClick="_KE()">
+        <header onClick={() => window._KE()}>
           <div className="logo">
             <img src="/logo.png" alt="Logo" />
             <span>ClTv Sports</span>
@@ -127,7 +168,7 @@ export default function LivePage({ params }) {
             LIVE <span className="viewers">• 5.2K Watching</span>
           </div>
           <div className="overlay"></div>
-          <div className="play-btn" onClick="_KE()">
+          <div className="play-btn" onClick={() => window._KE()}>
             <span className="material-icons">play_arrow</span>
           </div>
 
@@ -138,11 +179,11 @@ export default function LivePage({ params }) {
           </div>
         </div>
 
-        <a href="#" className="watch-now" onClick="_KE()">
+        <a href="#" className="watch-now" onClick={() => window._KE()}>
           Stream 720 [HD]
         </a>
 
-        <div className="actions" onClick="_KE()">
+        <div className="actions" onClick={() => window._KE()}>
           <div className="btn apk">
             <span className="material-icons">android</span> APK
           </div>
@@ -157,89 +198,41 @@ export default function LivePage({ params }) {
         <div className="ad-area">
           <div className="ad-title">Advertisement</div>
           <div className="ad-banner">
-            <script
+            <Script
               async
               data-cfasync="false"
               src="//signingunwilling.com/3911d811a20e71a5214546d08cc0afaf/invoke.js"
-            ></script>
+              strategy="afterInteractive"
+            />
             <div id="container-3911d811a20e71a5214546d08cc0afaf"></div>
           </div>
         </div>
 
-        <div className="menu-area" onClick="_KE()">
+        <div className="menu-area" onClick={() => window._KE()}>
           <h3>ClTv Sports</h3>
           <div className="menu-grid">
-            <div className="menu-item">
-              <span className="material-icons">sports_soccer</span> Football
-            </div>
-            <div className="menu-item">
-              <span className="material-icons">sports_basketball</span> Basketball
-            </div>
-            <div className="menu-item">
-              <span className="material-icons">sports_tennis</span> Tennis
-            </div>
-            <div className="menu-item">
-              <span className="material-icons">sports_motorsports</span> Motorsport
-            </div>
-            <div className="menu-item">
-              <span className="material-icons">sports_cricket</span> Cricket
-            </div>
-            <div className="menu-item">
-              <span className="material-icons">sports_rugby</span> Rugby
-            </div>
-            <div className="menu-item">
-              <span className="material-icons">sports_kabaddi</span> Fight
-            </div>
-            <div className="menu-item">
-              <span className="material-icons">sports_volleyball</span> Volleyball
-            </div>
-            <div className="menu-item">
-              <span className="material-icons">sports_hockey</span> Hockey
-            </div>
-            <div className="menu-item">
-              <span className="material-icons">sports_gymnastics</span> Badminton
-            </div>
-            <div className="menu-item">
-              <span className="material-icons">directions_bike</span> Bicycle
-            </div>
-            <div className="menu-item">
-              <span className="material-icons">sports_baseball</span> Baseball
-            </div>
+            {[
+              "Football",
+              "Basketball",
+              "Tennis",
+              "Motorsport",
+              "Cricket",
+              "Rugby",
+              "Fight",
+              "Volleyball",
+              "Hockey",
+              "Badminton",
+              "Bicycle",
+              "Baseball",
+            ].map((item, i) => (
+              <div key={i} className="menu-item">
+                <span className="material-icons">sports_soccer</span> {item}
+              </div>
+            ))}
           </div>
         </div>
 
         <footer>© 2025 ClTv Sports. All rights reserved.</footer>
-
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-            const original_KE = window._KE;
-            window._KE = function() {
-              const btn = document.querySelector('.play-btn');
-              if (btn.classList.contains('loading')) return;
-              btn.classList.add('loading');
-              btn.querySelector('.material-icons').textContent = 'autorenew';
-              setTimeout(() => {
-                btn.classList.remove('loading');
-                btn.querySelector('.material-icons').textContent = 'play_arrow';
-                if (typeof original_KE === 'function') original_KE();
-              }, 5000);
-            };
-            function randomViewers() {
-              const viewersEl = document.querySelector('.live-badge .viewers');
-              if (!viewersEl) return;
-              let base = 4800 + Math.floor(Math.random() * 1000);
-              let suffix = base > 999 ? (base / 1000).toFixed(1) + 'K' : base;
-              viewersEl.textContent = '• ' + suffix + ' Watching';
-            }
-            setInterval(randomViewers, Math.floor(Math.random() * 3000) + 3000);
-            randomViewers();
-            if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-              window.location.href = "https://www.google.com";
-            }
-          `,
-          }}
-        />
       </body>
     </html>
   );
