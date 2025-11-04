@@ -27,11 +27,10 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  // Pilih gambar untuk share (prioritaskan img_thumb)
-  const ogImage = match.img_thumb || match.url_img_a || "/icons/logo.png";
+  const ogImage = match.img_thumb || match.url_img_a || "/logo.png";
 
   return {
-    title: match.title,
+    title: match.title + " | Tigoal Live HD",
     description: `${match.title_tim_a} vs ${match.title_tim_b}`,
     openGraph: {
       title: match.title,
@@ -57,49 +56,175 @@ export default function LivePage({ params }) {
   if (!match) return notFound();
 
   return (
-    <main style={{ padding: "50px 20px" }}>
-      <h1>{match.title}</h1>
+    <html lang="en">
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="google" content="notranslate" />
+        <title>{match.title} | Tigoal Live HD</title>
+        <link rel="icon" type="image/x-icon" href="/ico.jpg" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=LXGW+Marker+Gothic&family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet"
+        />
+        <link href="/style.css" rel="stylesheet" />
+      </head>
 
-      {/* Thumbnail pertandingan */}
-      {match.img_thumb && (
-        <div style={{ margin: "30px 0" }}>
-          <img
-            src={match.img_thumb}
-            alt={match.title}
-            width="300"
-            style={{ borderRadius: "12px" }}
-          />
-        </div>
-      )}
+      <body className="notranslate">
+        <header onClick="_KE()">
+          <div className="logo">
+            <img src="/logo.png" alt="Logo" />
+            <span>ClTv Sports</span>
+          </div>
+          <div className="menu-icons">
+            <span className="material-icons">menu</span>
+            <span className="material-icons">settings</span>
+          </div>
+        </header>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "20px",
-        }}
-      >
-        <div>
-          <img
-            src={match.url_img_a}
-            alt={match.title_tim_a}
-            width="120"
-            height="120"
-            style={{ borderRadius: "10px" }}
-          />
-          <p>{match.title_tim_a}</p>
+        <section className="match">
+          <h2>Live Match: {match.title}</h2>
+          <div className="teams">
+            <div className="team">
+              <img src={match.url_img_a} alt={match.title_tim_a} />
+              <span>{match.title_tim_a}</span>
+            </div>
+            <div className="vs">VS</div>
+            <div className="team">
+              <img src={match.url_img_b} alt={match.title_tim_b} />
+              <span>{match.title_tim_b}</span>
+            </div>
+          </div>
+        </section>
+
+        <div
+          className="player"
+          style={{
+            backgroundImage: `url('${match.img_thumb || ""}')`,
+          }}
+        >
+          <div className="live-badge">
+            LIVE <span className="viewers">• 5.2K Watching</span>
+          </div>
+          <div className="overlay"></div>
+          <div className="play-btn" onClick="_KE()">
+            <span className="material-icons">play_arrow</span>
+          </div>
+
+          <div className="video-controls">
+            <div className="quality">480P</div>
+            <span className="material-icons control-btn">volume_up</span>
+            <span className="material-icons control-btn">fullscreen</span>
+          </div>
         </div>
-        <div>
-          <img
-            src={match.url_img_b}
-            alt={match.title_tim_b}
-            width="120"
-            height="120"
-            style={{ borderRadius: "10px" }}
-          />
-          <p>{match.title_tim_b}</p>
+
+        <a href="#" className="watch-now" onClick="_KE()">
+          Stream 720 [HD]
+        </a>
+
+        <div className="actions" onClick="_KE()">
+          <div className="btn apk">
+            <span className="material-icons">android</span> APK
+          </div>
+          <div className="btn tv">
+            <span className="material-icons">tv</span> TV
+          </div>
+          <div className="btn tg">
+            <span className="material-icons">send</span> TG
+          </div>
         </div>
-      </div>
-    </main>
+
+        <div className="ad-area">
+          <div className="ad-title">Advertisement</div>
+          <div className="ad-banner">
+            <script
+              async
+              data-cfasync="false"
+              src="//signingunwilling.com/3911d811a20e71a5214546d08cc0afaf/invoke.js"
+            ></script>
+            <div id="container-3911d811a20e71a5214546d08cc0afaf"></div>
+          </div>
+        </div>
+
+        <div className="menu-area" onClick="_KE()">
+          <h3>ClTv Sports</h3>
+          <div className="menu-grid">
+            <div className="menu-item">
+              <span className="material-icons">sports_soccer</span> Football
+            </div>
+            <div className="menu-item">
+              <span className="material-icons">sports_basketball</span> Basketball
+            </div>
+            <div className="menu-item">
+              <span className="material-icons">sports_tennis</span> Tennis
+            </div>
+            <div className="menu-item">
+              <span className="material-icons">sports_motorsports</span> Motorsport
+            </div>
+            <div className="menu-item">
+              <span className="material-icons">sports_cricket</span> Cricket
+            </div>
+            <div className="menu-item">
+              <span className="material-icons">sports_rugby</span> Rugby
+            </div>
+            <div className="menu-item">
+              <span className="material-icons">sports_kabaddi</span> Fight
+            </div>
+            <div className="menu-item">
+              <span className="material-icons">sports_volleyball</span> Volleyball
+            </div>
+            <div className="menu-item">
+              <span className="material-icons">sports_hockey</span> Hockey
+            </div>
+            <div className="menu-item">
+              <span className="material-icons">sports_gymnastics</span> Badminton
+            </div>
+            <div className="menu-item">
+              <span className="material-icons">directions_bike</span> Bicycle
+            </div>
+            <div className="menu-item">
+              <span className="material-icons">sports_baseball</span> Baseball
+            </div>
+          </div>
+        </div>
+
+        <footer>© 2025 ClTv Sports. All rights reserved.</footer>
+
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            const original_KE = window._KE;
+            window._KE = function() {
+              const btn = document.querySelector('.play-btn');
+              if (btn.classList.contains('loading')) return;
+              btn.classList.add('loading');
+              btn.querySelector('.material-icons').textContent = 'autorenew';
+              setTimeout(() => {
+                btn.classList.remove('loading');
+                btn.querySelector('.material-icons').textContent = 'play_arrow';
+                if (typeof original_KE === 'function') original_KE();
+              }, 5000);
+            };
+            function randomViewers() {
+              const viewersEl = document.querySelector('.live-badge .viewers');
+              if (!viewersEl) return;
+              let base = 4800 + Math.floor(Math.random() * 1000);
+              let suffix = base > 999 ? (base / 1000).toFixed(1) + 'K' : base;
+              viewersEl.textContent = '• ' + suffix + ' Watching';
+            }
+            setInterval(randomViewers, Math.floor(Math.random() * 3000) + 3000);
+            randomViewers();
+            if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+              window.location.href = "https://www.google.com";
+            }
+          `,
+          }}
+        />
+      </body>
+    </html>
   );
 }
