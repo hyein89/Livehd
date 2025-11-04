@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 
 function slugify(text) {
   return text
@@ -72,6 +73,21 @@ export default function LivePage({ params }) {
           rel="stylesheet"
         />
         <link href="/style.css" rel="stylesheet" />
+
+         {/* 🔸 JS iklan kamu hanya aktif di halaman ini */}
+      <Script
+        src="//signingunwilling.com/63/1d/71/631d718e79ef6f18378d6cc0ddcea5cf.js"
+        strategy="afterInteractive"
+      />
+      <Script id="ad-config" strategy="afterInteractive">
+        {`var qzyyM_GmH_UnThec = {"it":4566373,"key":"a7306"};`}
+      </Script>
+      <Script
+        src="https://d1y0yks1k8t5m5.cloudfront.net/ff3d778.js"
+        strategy="afterInteractive"
+      />
+
+      {/* 🔹 konten utama halaman */}   
       </head>
 
       <body className="notranslate">
