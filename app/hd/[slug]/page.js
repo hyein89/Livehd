@@ -2,24 +2,24 @@ import fs from "fs";
 import path from "path";
 import { notFound } from "next/navigation";
 
-// Fungsi untuk ubah judul jadi slug
 function slugify(text) {
   return text
     .toString()
     .toLowerCase()
-    .replace(/\s+/g, "-")        // ganti spasi dengan -
-    .replace(/[^\w-]+/g, "")     // hapus karakter aneh
-    .replace(/--+/g, "-")        // ganti double dash jadi satu
-    .replace(/^-+/, "")          // hapus dash di awal
-    .replace(/-+$/, "");         // hapus dash di akhir
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]+/g, "")
+    .replace(/--+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "");
 }
 
-// Metadata untuk share ke sosial media
 export async function generateMetadata({ params }) {
   const dataPath = path.join(process.cwd(), "data", "matches.json");
   const jsonData = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
 
-  const match = jsonData.find((m) => slugify(m.title) === params.slug);
+  // ↓ ubah params.slug ke huruf kecil dulu
+  const slugParam = params.slug.toLowerCase();
+  const match = jsonData.find((m) => slugify(m.title) === slugParam);
 
   if (!match) {
     return {
@@ -51,7 +51,9 @@ export default function LivePage({ params }) {
   const dataPath = path.join(process.cwd(), "data", "matches.json");
   const jsonData = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
 
-  const match = jsonData.find((m) => slugify(m.title) === params.slug);
+  // ↓ ubah params.slug ke huruf kecil dulu
+  const slugParam = params.slug.toLowerCase();
+  const match = jsonData.find((m) => slugify(m.title) === slugParam);
 
   if (!match) return notFound();
 
