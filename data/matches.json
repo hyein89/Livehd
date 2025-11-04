@@ -5,7 +5,8 @@
     "title_tim_a": "Barcelona",
     "title_tim_b": "Real Madrid",
     "url_img_a": "https://example.com/barca.png",
-    "url_img_b": "https://example.com/realmadrid.png"
+    "url_img_b": "https://example.com/realmadrid.png",
+    "img_thumb": "https://example.com/thumb-barca-real.jpg"
   },
   {
     "id": "2",
@@ -13,6 +14,7 @@
     "title_tim_a": "Liverpool",
     "title_tim_b": "Man City",
     "url_img_a": "https://example.com/liverpool.png",
-    "url_img_b": "https://example.com/mancity.png"
+    "url_img_b": "https://example.com/mancity.png",
+    "img_thumb": "https://example.com/thumb-liverpool-city.jpg"
   }
 ]
