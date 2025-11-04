@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "title": "Barcelona vs Real Madrid",
+    "title_tim_a": "Barcelona",
+    "title_tim_b": "Real Madrid",
+    "url_img_a": "https://example.com/barca.png",
+    "url_img_b": "https://example.com/realmadrid.png"
+  },
+  {
+    "id": "2",
+    "title": "Liverpool vs Man City",
+    "title_tim_a": "Liverpool",
+    "title_tim_b": "Man City",
+    "url_img_a": "https://example.com/liverpool.png",
+    "url_img_b": "https://example.com/mancity.png"
+  }
+]
