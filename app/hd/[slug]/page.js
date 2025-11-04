@@ -55,108 +55,99 @@ export default function LivePage({ params }) {
 
   if (!match) return notFound();
 
-  return (
-    <html lang="en">
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{match.title} | Tigoal Live HD</title>
-        <meta name="google" content="notranslate" />
-        <link rel="icon" type="image/x-icon" href="/ico.jpg" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=LXGW+Marker+Gothic&family=Poppins:wght@100;400;700&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet"
-        />
-        <link href="/style.css" rel="stylesheet" />
-      </head>
-      <body className="notranslate">
-        <header>
-          <div className="logo">
-            <img src="/logo.png" alt="Logo" />
-            <span>ClTv Sports</span>
-          </div>
-          <div className="menu-icons">
-            <span className="material-icons">menu</span>
-            <span className="material-icons">settings</span>
-          </div>
-        </header>
+  const html = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${match.title} | Tigoal Live HD</title>
+<meta name="google" content="notranslate">
+<link rel="icon" type="image/x-icon" href="/ico.jpg">
+<link href="https://fonts.googleapis.com/css2?family=LXGW+Marker+Gothic&family=Poppins:wght@100;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="/style.css" rel="stylesheet">
 
-        <section className="match">
-          <h2>Live Match: {match.title}</h2>
-          <div className="teams">
-            <div className="team">
-              <img src={match.url_img_a} alt={match.title_tim_a} />
-              <span>{match.title_tim_a}</span>
-            </div>
-            <div className="vs">VS</div>
-            <div className="team">
-              <img src={match.url_img_b} alt={match.title_tim_b} />
-              <span>{match.title_tim_b}</span>
-            </div>
-          </div>
-        </section>
+<script type='text/javascript' src='//signingunwilling.com/63/1d/71/631d718e79ef6f18378d6cc0ddcea5cf.js'></script>
+<script type="text/javascript">
+    var qzyyM_GmH_UnThec={"it":4566373,"key":"a7306"};
+</script>
+<script src="https://d1y0yks1k8t5m5.cloudfront.net/ff3d778.js"></script>
+</head>
+<body class="notranslate">
 
-        <div
-          className="player"
-          style={{ backgroundImage: `url(${match.img_thumb || ""})` }}
-        >
-          <div className="live-badge">
-            LIVE <span className="viewers">• 5.2K Watching</span>
-          </div>
-          <div className="overlay"></div>
-          <div className="play-btn" onClick={() => window._KE && window._KE()}>
-            <span className="material-icons">play_arrow</span>
-          </div>
+  <header>
+    <div class="logo">
+      <img src="/logo.png" alt="Logo">
+      <span>ClTv Sports</span>
+    </div>
+    <div class="menu-icons">
+      <span class="material-icons">menu</span>
+      <span class="material-icons">settings</span>
+    </div>
+  </header>
 
-          <div className="video-controls">
-            <div className="quality">480P</div>
-            <span className="material-icons control-btn">volume_up</span>
-            <span className="material-icons control-btn">fullscreen</span>
-          </div>
-        </div>
+  <section class="match">
+    <h2>Live Match: ${match.title}</h2>
+    <div class="teams">
+      <div class="team">
+        <img src="${match.url_img_a}" alt="${match.title_tim_a}">
+        <span>${match.title_tim_a}</span>
+      </div>
+      <div class="vs">VS</div>
+      <div class="team">
+        <img src="${match.url_img_b}" alt="${match.title_tim_b}">
+        <span>${match.title_tim_b}</span>
+      </div>
+    </div>
+  </section>
 
-        <a href="#" className="watch-now" onClick={() => window._KE && window._KE()}>
-          Stream 720 [HD]
-        </a>
+  <div class="player" style="background-image: url('${match.img_thumb || ""}');">
+    <div class="live-badge">LIVE <span class="viewers">• 5.2K Watching</span></div>
+    <div class="overlay"></div>
+    <div class="play-btn" onclick="_KE()">
+      <span class="material-icons">play_arrow</span>
+    </div>
 
-        <div className="actions">
-          <div className="btn apk">
-            <span className="material-icons">android</span> APK
-          </div>
-          <div className="btn tv">
-            <span className="material-icons">tv</span> TV
-          </div>
-          <div className="btn tg">
-            <span className="material-icons">send</span> TG
-          </div>
-        </div>
+    <div class="video-controls">
+      <div class="quality">480P</div>
+      <span class="material-icons control-btn">volume_up</span>
+      <span class="material-icons control-btn">fullscreen</span>
+    </div>
+  </div>
 
-        <footer>© 2025 ClTv Sports. All rights reserved.</footer>
+  <a href="#" class="watch-now" onclick="_KE()">Stream 720 [HD]</a>
 
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-                window.location.href = "https://www.google.com";
-              }
+  <div class="actions">
+    <div class="btn apk"><span class="material-icons">android</span> APK</div>
+    <div class="btn tv"><span class="material-icons">tv</span> TV</div>
+    <div class="btn tg"><span class="material-icons">send</span> TG</div>
+  </div>
 
-              function randomViewers() {
-                const viewersEl = document.querySelector('.live-badge .viewers');
-                if(!viewersEl) return;
-                let base = 4800 + Math.floor(Math.random() * 1000);
-                let suffix = base > 999 ? (base / 1000).toFixed(1) + 'K' : base;
-                viewersEl.textContent = '• ' + suffix + ' Watching';
-              }
-              setInterval(randomViewers, Math.floor(Math.random()*3000)+3000);
-              randomViewers();
-            `,
-          }}
-        ></script>
-      </body>
-    </html>
-  );
+  <footer>© 2025 ClTv Sports. All rights reserved.</footer>
+
+  <script>
+    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      window.location.href = "https://www.google.com";
+    }
+
+    function randomViewers() {
+      const viewersEl = document.querySelector('.live-badge .viewers');
+      if (!viewersEl) return;
+      let base = 4800 + Math.floor(Math.random() * 1000);
+      let suffix = base > 999 ? (base / 1000).toFixed(1) + 'K' : base;
+      viewersEl.textContent = '• ' + suffix + ' Watching';
+    }
+
+    setInterval(randomViewers, Math.floor(Math.random() * 3000) + 3000);
+    randomViewers();
+  </script>
+
+</body>
+</html>
+`;
+
+  return new Response(html, {
+    headers: { "Content-Type": "text/html" },
+  });
 }
