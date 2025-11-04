@@ -17,7 +17,6 @@ export async function generateMetadata({ params }) {
   const dataPath = path.join(process.cwd(), "data", "matches.json");
   const jsonData = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
 
-  // ↓ ubah params.slug ke huruf kecil dulu
   const slugParam = params.slug.toLowerCase();
   const match = jsonData.find((m) => slugify(m.title) === slugParam);
 
@@ -28,7 +27,8 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  const ogImage = match.url_img_a || "/icons/logo.png";
+  // Pilih gambar untuk share (prioritaskan img_thumb)
+  const ogImage = match.img_thumb || match.url_img_a || "/icons/logo.png";
 
   return {
     title: match.title,
@@ -51,7 +51,6 @@ export default function LivePage({ params }) {
   const dataPath = path.join(process.cwd(), "data", "matches.json");
   const jsonData = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
 
-  // ↓ ubah params.slug ke huruf kecil dulu
   const slugParam = params.slug.toLowerCase();
   const match = jsonData.find((m) => slugify(m.title) === slugParam);
 
@@ -60,12 +59,24 @@ export default function LivePage({ params }) {
   return (
     <main style={{ padding: "50px 20px" }}>
       <h1>{match.title}</h1>
+
+      {/* Thumbnail pertandingan */}
+      {match.img_thumb && (
+        <div style={{ margin: "30px 0" }}>
+          <img
+            src={match.img_thumb}
+            alt={match.title}
+            width="300"
+            style={{ borderRadius: "12px" }}
+          />
+        </div>
+      )}
+
       <div
         style={{
           display: "flex",
           justifyContent: "center",
           gap: "20px",
-          marginTop: "30px",
         }}
       >
         <div>
