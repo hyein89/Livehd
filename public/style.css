@@ -1,0 +1,417 @@
+@import url('https://fonts.googleapis.com/css2?family=LXGW+Marker+Gothic&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "LXGW Marker Gothic", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  body {
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  header {
+    background: #111;
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #222;
+  }
+  header .logo {
+    font-weight: 700;
+    font-size: 18px;
+    color: #ffcc00;
+  }
+  header .menu-icons span {
+    font-size: 24px;
+    margin-left: 12px;
+    cursor: pointer;
+  }
+
+  /* MATCH AREA */
+  .match {
+    background: #1a1a1a;
+    padding: 15px;
+    text-align: center;
+  }
+  .teams {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px 0;
+  }
+  .team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .team img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+  }
+  .vs {
+    color: #ff3333;
+    font-weight: bold;
+    font-size: 22px;
+  }
+
+  /* PLAYER AREA */
+  .player {
+    position: relative;
+    background: radial-gradient(circle, #333 0%, #000 80%);
+    aspect-ratio: 16 / 9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .play-btn {
+    width: 100px;
+    height: 100px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .play-btn:hover {
+    background: rgba(255,255,255,0.1);
+  }
+  .play-btn .material-icons {
+    font-size: 60px;
+  }
+
+  /* WATCH BUTTON */
+  .watch-now {
+    display: block;
+    width: 90%;
+    margin: 20px auto 10px;
+    padding: 14px;
+    text-align: center;
+    background: #00c853;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    border-radius: 8px;
+  }
+  .watch-now:hover {
+    background: #00a846;
+  }
+
+  /* ACTION BUTTON AREA */
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 10px 0 20px;
+    flex-wrap: wrap;
+  }
+  .actions .btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #666;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 6px;
+  }
+  .actions .btn:hover {
+    background: #222;
+  }
+  .actions .btn .material-icons {
+    font-size: 18px;
+  }
+  .btn.apk .material-icons { color: #7CFC00; }
+  .btn.tv .material-icons { color: #00FF7F; }
+  .btn.tg .material-icons { color: #FF4081; }
+
+  /* AD AREA */
+  .ad-area {
+    background: #0d0d0d;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #222;
+  }
+  .ad-area .ad-title {
+    color: #aaa;
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+  .ad-banner {
+    background: #1a1a1a;
+    color: #999;
+    padding: 15px;
+    margin: 0 10px 10px;
+    border: 1px dashed #333;
+    
+  }
+
+  /* MENU AREA */
+  .menu-area {
+    background: #000;
+    padding: 20px 10px;
+    border-top: 1px solid #222;
+  }
+  .menu-area h3 {
+    text-align: left;
+    color: #ffcc00;
+    margin-bottom: 15px;
+    font-size: 18px;
+  }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 25px;
+    max-width: 500px;
+    margin: auto;
+  }
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    font-size: 15px;
+    transition: 0.3s;
+  }
+  .menu-item:hover {
+    color: #00FF7F;
+  }
+  .menu-item .material-icons {
+    font-size: 20px;
+    color: #ffcc00;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #111;
+    padding: 20px 10px;
+    text-align: center;
+    color: #aaa;
+    border-top: 1px solid #222;
+    font-size: 13px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .team img { width: 60px; height: 60px; }
+    .play-btn { width: 80px; height: 80px; }
+    .play-btn .material-icons { font-size: 50px; }
+    .menu-grid { gap: 10px 15px; }
+  }
+  @media (max-width: 480px) {
+    .team img { width: 50px; height: 50px; }
+    .vs { font-size: 18px; }
+    .play-btn { width: 70px; height: 70px; }
+    .play-btn .material-icons { font-size: 45px; }
+    .menu-grid { grid-template-columns: 1fr 1fr; gap: 10px 10px; }
+    .menu-item { font-size: 14px; }
+  }
+  
+  /* Area video poster */
+.player {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Overlay */
+.player .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 1;
+}
+
+/* Tombol Play */
+.play-btn {
+  width: 90px;
+  height: 90px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 2;
+}
+.play-btn:hover {
+  background: rgba(255,255,255,0.1);
+  transform: scale(1.05);
+}
+.play-btn .material-icons {
+  font-size: 55px;
+  color: #fff;
+}
+
+/* Badge LIVE */
+.live-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: red;
+  color: #fff;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  z-index: 3;
+  animation: pulse 1.5s infinite;
+  box-shadow: 0 0 8px rgba(255,0,0,0.8);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.live-badge .viewers {
+  font-weight: 400;
+  font-size: 12px;
+  color: #ffdcdc;
+}
+
+/* Animasi berkedip */
+@keyframes pulse {
+  0% { opacity: 1; box-shadow: 0 0 6px rgba(255,0,0,0.8); }
+  50% { opacity: 0.6; box-shadow: 0 0 12px rgba(255,0,0,1); }
+  100% { opacity: 1; box-shadow: 0 0 6px rgba(255,0,0,0.8); }
+}
+
+/* Kontrol video bawah */
+.video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 15px;
+  gap: 10px;
+  z-index: 3;
+}
+.control-btn {
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: 0.3s;
+}
+.control-btn:hover {
+  opacity: 1;
+}
+.quality {
+  border: 1px solid rgba(255,255,255,0.6);
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  opacity: 0.85;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.quality:hover {
+  background: rgba(255,255,255,0.15);
+  opacity: 1;
+}
+
+/* Responsif */
+@media (max-width: 600px) {
+  .play-btn { width: 70px; height: 70px; }
+  .play-btn .material-icons { font-size: 45px; }
+  .control-btn { font-size: 22px; }
+  .quality { font-size: 12px; padding: 2px 8px; }
+  .live-badge { font-size: 12px; padding: 4px 8px; }
+  .live-badge .viewers { font-size: 10px; }
+}
+
+
+
+/* Mode loading */
+.play-btn.loading {
+  border-color: #00ffc6;
+  background: radial-gradient(circle at center, rgba(0,255,198,0.2) 0%, rgba(0,0,0,0.7) 100%);
+  animation: pulseRing 1.2s infinite ease-in-out;
+}
+
+/* Efek cincin luar saat loading */
+.play-btn.loading::before {
+  content: "";
+  position: absolute;
+  width: 140%;
+  height: 140%;
+  border: 2px solid rgba(0,255,198,0.5);
+  border-radius: 50%;
+  animation: ripple 1.2s infinite ease-out;
+}
+
+/* Ikon loading */
+.play-btn.loading .material-icons {
+  font-size: 38px;
+  color: #00ffc6;
+  animation: spin 1.2s linear infinite;
+}
+
+/* --- Animasi --- */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseRing {
+  0%, 100% { box-shadow: 0 0 10px rgba(0,255,198,0.4), inset 0 0 10px rgba(0,255,198,0.4); }
+  50% { box-shadow: 0 0 25px rgba(0,255,198,0.8), inset 0 0 15px rgba(0,255,198,0.8); }
+}
+
+@keyframes ripple {
+  0% { transform: scale(0.9); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+header .logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #ffcc00;
+}
+
+header .logo img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(255, 204, 0, 0.4);
+  transition: 0.3s;
+}
+
+header .logo img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(255, 204, 0, 0.7);
+}
+header .logo span {
+  animation: goldGlow 2.5s infinite;
+}
+
+@keyframes goldGlow {
+  0%, 100% { text-shadow: 0 0 5px #ffcc00, 0 0 10px #ffcc00; }
+  50% { text-shadow: 0 0 15px #ffea00, 0 0 25px #ffd700; }
+}
